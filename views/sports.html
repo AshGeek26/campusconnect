@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports | Campus Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Reusing the styles from the news feed page */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #27ae60;
+            --light-background: #ecf0f1;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-background);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-right: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .sidebar-logo i {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--light-background);
+        }
+
+        .main-content {
+            flex-grow: 1;
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 25px;
+            padding: 10px 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .news-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background-color: white;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .news-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .news-card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .news-card-content {
+            padding: 20px;
+        }
+
+        .news-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .news-card-tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .news-tag {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            background-color: var(--light-background);
+        }
+
+        .create-post-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .create-post-btn:hover {
+            background-color: #2ecc71;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-futbol"></i>
+                <h2>Campus Connect</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="../index.php"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="studentGov.html"><i class="fas fa-university"></i> Student Government</a></li>
+                <li><a href="campusClubs.html"><i class="fas fa-users"></i> Campus Clubs</a></li>
+                <li><a href="sports.html" class="active"><i class="fas fa-futbol"></i> Sports</a></li>
+                <li><a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a></li>     
+                <li><a href="feedback.html"><i class="fas fa-flag"></i> Feedback & Complaints</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="news-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search sports news and teams">
+                </div>
+                <button class="create-post-btn">
+                    <i class="fas fa-plus"></i> Create Sports Post
+                </button>
+            </div>
+
+            <div class="news-filters">
+                <button class="filter-btn active">All Sports</button>
+                <button class="filter-btn">Basketball</button>
+                <button class="filter-btn">Football</button>
+                <button class="filter-btn">Soccer</button>
+                <button class="filter-btn">Volleyball</button>
+            </div>
+
+            <!-- Sports Card 1: Basketball Tournament -->
+            <div class="news-card">
+                <img src="/api/placeholder/800/250" alt="Basketball Tournament" class="news-card-image">
+                <div class="news-card-content">
+                    <div class="news-card-header">
+                        <h2>Regional Basketball Championships</h2>
+                        <div class="news-card-tags">
+                            <span class="news-tag" style="background-color: #e74c3c; color: white;">Tournament</span>
+                            <span class="news-tag" style="background-color: #3498db; color: white;">Basketball</span>
+                        </div>
+                    </div>
+                    <p>Our university basketball team is competing in the regional championships. Support our athletes and cheer them on to victory!</p>
+                    <div class="news-card-footer">
+                        <small>Date: Next Weekend | Venue: City Sports Arena</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sports Card 2: Football Team Recruitment -->
+            <div class="news-card">
+                <img src="/api/placeholder/800/250" alt="Football Team Tryouts" class="news-card-image">
+                <div class="news-card-content">
+                    <div class="news-card-header">
+                        <h2>Football Team Open Tryouts</h2>
+                        <div class="news-card-tags">
+                            <span class="news-tag" style="background-color: #27ae60; color: white;">Recruitment</span>
+                            <span class="news-tag" style="background-color: #f39c12; color: white;">Football</span>
+                        </div>
+                    </div>
+                    <p>Calling all football enthusiasts! We're looking for talented players to join our university football team. All skill levels welcome.</p>
+                    <div class="news-card-footer">
+                        <small>Tryouts: This Saturday, University Sports Complex</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sports Card 3: Volleyball Achievements -->
+            <div class="news-card">
+                <img src="/api/placeholder/800/250" alt="Volleyball Team" class="news-card-image">
+                <div class="news-card-content">
+                    <div class="news-card-header">
+                        <h2>Volleyball Team Wins State Championship</h2>
+                        <div class="news-card-tags">
+                            <span class="news-tag" style="background-color: #9b59b6; color: white;">Championship</span>
+                            class="news-tag" style="background-color: #3498db; color: white;">Volleyball</span>
+                        </div>
+                    </div>
+                    <p>Congratulations to our university volleyball team for their outstanding performance in the state championship. Celebrate their success this Friday at the victory rally!</p>
+                    <div class="news-card-footer">
+                        <small>Date: Friday | Venue: Main Auditorium</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer style="margin-top: 30px; padding: 20px; text-align: center; background-color: var(--primary-color); color: white; border-radius: 10px;">
+        <p>© 2024 Campus Connect | All Rights Reserved</p>
+        <p>Contact us: <a href="mailto:info@campusconnect.edu" style="color: var(--secondary-color); text-decoration: none;">info@campusconnect.edu</a></p>
+    </footer>
+</body>
+</html>

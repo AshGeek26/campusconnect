@@ -1,0 +1,21 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Remove PHP file extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Redirect all requests to index.php for routing
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Secure files
+<FilesMatch "\.(?:ini|phps?|log)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Campus Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;    /* Deep navy blue */
+            --secondary-color: #3498db;  /* Bright blue */
+            --accent-color: #27ae60;     /* Fresh green */
+            --light-background: #ecf0f1; /* Light gray */
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-background);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-right: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+
+        .sidebar-logo i {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--light-background);
+        }
+
+        .main-content {
+            flex-grow: 1;
+        }
+
+        .events-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 25px;
+            padding: 10px 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .event-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background-color: white;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .event-card-image {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .event-card-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .event-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .event-card-tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .event-tag {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            background-color: var(--light-background);
+        }
+
+        .create-event-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .create-event-btn:hover {
+            background-color: #2ecc71;
+        }
+
+        .event-details {
+            margin-top: 15px;
+        }
+
+        .event-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+                position: static;
+            }
+
+            .event-card {
+                flex-direction: column;
+            }
+
+            .event-card-image {
+                width: 100%;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-logo">
+                <i class="fas fa-calendar-alt"></i>
+                <h2>Campus Connect</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="../index.php"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="studentGov.html"><i class="fas fa-university"></i> Student Government</a></li>
+                <li><a href="campusClubs.html"><i class="fas fa-users"></i> Campus Clubs</a></li>
+                <li><a href="sports.html"><i class="fas fa-futbol"></i> Sports</a></li>
+                <li><a href="#" class="active"><i class="fas fa-calendar-alt"></i> Events</a></li>     
+                <li><a href="feedback.html"><i class="fas fa-flag"></i> Feedback & Complaints</a></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="events-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search events">
+                </div>
+                <button class="create-event-btn">
+                    <i class="fas fa-plus"></i> Create Event
+                </button>
+            </div>
+
+            <div class="event-filters">
+                <button class="filter-btn active">All Events</button>
+                <button class="filter-btn">Academic</button>
+                <button class="filter-btn">Cultural</button>
+                <button class="filter-btn">Sports</button>
+                <button class="filter-btn">Workshops</button>
+            </div>
+
+            <!-- Event Card 1: Tech Workshop -->
+            <div class="event-card">
+                <img src="/api/placeholder/800/250" alt="Tech Innovation Workshop" class="event-card-image">
+                <div class="event-card-content">
+                    <div class="event-card-header">
+                        <h2>AI and Machine Learning Workshop</h2>
+                        <div class="event-card-tags">
+                            <span class="event-tag" style="background-color: #3498db; color: white;">Workshops</span>
+                            <span class="event-tag" style="background-color: #2980b9; color: white;">Academic</span>
+                        </div>
+                    </div>
+                    <p>Join us for an intensive workshop on AI and Machine Learning technologies. Learn from industry experts and get hands-on experience with cutting-edge tools and techniques.</p>
+                    <div class="event-details">
+                        <div class="event-meta">
+                            <div><i class="fas fa-calendar"></i> October 15, 2024</div>
+                            <div><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</div>
+                            <div><i class="fas fa-map-marker-alt"></i> Tech Innovation Center</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 2: Cultural Festival -->
+            <div class="event-card">
+                <img src="/api/placeholder/800/250" alt="Cultural Festival" class="event-card-image">
+                <div class="event-card-content">
+                    <div class="event-card-header">
+                        <h2>Multicultural Campus Festival</h2>
+                        <div class="event-card-tags">
+                            <span class="event-tag" style="background-color: #e74c3c; color: white;">Cultural</span>
+                        </div>
+                    </div>
+                    <p>Celebrate diversity and cultural exchange at our annual Multicultural Campus Festival. Enjoy performances, food, art, and music from around the world!</p>
+                    <div class="event-details">
+                        <div class="event-meta">
+                            <div><i class="fas fa-calendar"></i> November 5, 2024</div>
+                            <div><i class="fas fa-clock"></i> 12:00 PM - 8:00 PM</div>
+                            <div><i class="fas fa-map-marker-alt"></i> Campus Quad</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Card 3: Sports Tournament -->
+            <div class="event-card">
+                <img src="/api/placeholder/800/250" alt="Intercollegiate Sports Tournament" class="event-card-image">
+                <div class="event-card-content">
+                    <div class="event-card-header">
+                        <h2>Regional Intercollegiate Sports Tournament</h2>
+                        <div class="event-card-tags">
+                            <span class="event-tag" style="background-color: #27ae60; color: white;">Sports</span>
+                        </div>
+                    </div>
+                    <p>Our university hosts the annual Regional Intercollegiate Sports Tournament. Compete with top athletes from universities across the region in multiple sports categories.</p>
+                    <div class="event-details">
+                        <div class="event-meta">
+                            <div><i class="fas fa-calendar"></i> September 20-22, 2024</div>
+                            <div><i class="fas fa-clock"></i> All Day</div>
+                            <div><i class="fas fa-map-marker-alt"></i> University Sports Complex</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
